@@ -1,0 +1,2 @@
+8.00,food,was hungry
+1.50,food,was more hungry
