@@ -12,7 +12,7 @@ public class ExpenseDB {
     * Constructor only read files and populates array list.
      */
     ExpenseDB() {
-        readDB();
+        expenseArrayList = readDB();
     }
 
     /*
@@ -35,6 +35,13 @@ public class ExpenseDB {
         catch (FileNotFoundException e) {
             // Print errors for developer for now.
             e.printStackTrace();
+        }
+
+        // Parse contents into array list.
+        String[] parsedContent = contents.split("\n");
+        for(String itemCollection : parsedContent) {
+            String[] items = itemCollection.split(",");
+            parsedExpenses.add(new Expense(Double.parseDouble(items[0]), items[1], items[2]));
         }
 
         return parsedExpenses;
