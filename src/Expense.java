@@ -4,6 +4,14 @@ public class Expense {
     private String category;
     private String desc;
 
+    /*
+    * Constructor only creates an object to store the
+      collection of data.
+    *
+    * @param amount: is the amount of currency in GBP.
+    * @param category: is a single word.
+    * @param desc: short description of the transaction.
+     */
     Expense(double amount, String category, String desc) {
         this.amount = amount;
         this.category = category;
