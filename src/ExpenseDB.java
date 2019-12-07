@@ -75,7 +75,7 @@ public class ExpenseDB {
             Expense e = expenseArrayList.remove(expenseArrayList.size() - 1);
             // Append current contents plus the new Expense object.
             fileWriter.write(fileContents + String.format(
-                    "%f,%s,%s,\n",
+                    "%.2f,%s,%s,\n",
                     e.getAmount(),
                     e.getCategory(),
                     e.getDesc()

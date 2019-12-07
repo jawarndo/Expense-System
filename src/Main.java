@@ -13,12 +13,12 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle("Expense System");
-        //stage.setScene(someScene);
+        stage.setScene(new MenuScene(width, height).getScene());
         stage.setResizable(false);
         stage.show();
     }
 
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
