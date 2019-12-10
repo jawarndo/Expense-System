@@ -3,8 +3,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private static int width = 1000;
-    private static int height = 800;
+    private static int width = 500;
+    private static int height = 500;
 
     /*
     * Launch window, set initial menu scene.
