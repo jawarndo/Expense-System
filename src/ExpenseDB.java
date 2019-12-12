@@ -85,4 +85,8 @@ public class ExpenseDB {
             e.printStackTrace();
         }
     }
+
+    public ArrayList<Expense> getExpenseArrayList() {
+        return expenseArrayList;
+    }
 }

@@ -93,6 +93,13 @@ public class MenuScene {
                         analysisLabel.setOpacity(0.5f);
                     }
                     break;
+                case ENTER:
+                    if(isEdit) {
+                        Main.switchToEdit();
+                    } else {
+                        Main.switchToAnalysis();
+                    }
+                    break;
             }
         });
     }
