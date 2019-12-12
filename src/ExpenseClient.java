@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class ExpenseClient {
@@ -32,6 +34,7 @@ public class ExpenseClient {
                 break;
             case 1:
                 analysis();
+                start();
                 break;
             case 2:
                 System.exit(0);
@@ -129,6 +132,40 @@ public class ExpenseClient {
     }
 
     private void analysis() {
+
+        ArrayList<Expense> expenseArrayList = expenseDB.getExpenseArrayList();
+
+        System.out.println("CS1822 Expense-System | Analysis Mode");
+        System.out.println("Statistics:");
+
+        // Calculate total spent.
+        double total = 0.0f;
+        for (int i = 0; i < expenseArrayList.size(); i++) {
+            Expense e = expenseArrayList.get(i);
+            total += e.getAmount();
+        }
+        System.out.printf("\nTotal Expenses: £%.2f\n", total);
+
+        // Print spending per category.
+        HashSet<String> categorySet = new HashSet<>();
+        HashMap<String, Double> categoryMap = new HashMap<>();
+        for (int i = 0; i < expenseArrayList.size(); i++) {
+            categorySet.add(expenseArrayList.get(i).getCategory());
+        }
+        for (String s : categorySet) {
+            categoryMap.put(s, 0.0);
+        }
+        // Iterate through expenseArrayList increment counts of each category.
+        for (Expense e : expenseArrayList) {
+            categoryMap.put(e.getCategory(), categoryMap.get(e.getCategory()) + e.getAmount());
+        }
+        System.out.println();
+        // Print Highest spend category.
+        System.out.println("Expenditure Per Category:");
+        for (String s : categorySet) {
+            System.out.printf("%s: £%.2f\n", s, categoryMap.get(s));
+        }
+        System.out.println();
 
     }
 }
