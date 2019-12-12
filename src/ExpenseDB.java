@@ -99,7 +99,7 @@ public class ExpenseDB {
                 // Reference most last element of array list.
                 Expense e = expenseArrayList.get(i);
                 // Append current contents plus the new Expense object.
-                fileWriter.write(fileContents + String.format(
+                fileWriter.write(String.format(
                         "%.2f,%s,%s,\n",
                         e.getAmount(),
                         e.getCategory(),
