@@ -31,6 +31,11 @@ public class ExpenseDB {
         writeDB();
     }
 
+    public void deleteExpense(int atIndex) {
+        expenseArrayList.remove(atIndex);
+        overWriteDB();
+    }
+
     /*
     * Method reads the contents of the database then parses it
       such that all records are stored into the expenseArrayList.
@@ -80,6 +85,27 @@ public class ExpenseDB {
                     e.getCategory(),
                     e.getDesc()
             ));
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+        // Update ArrayList.
+        expenseArrayList = readDB();
+    }
+
+    private void overWriteDB() {
+        try(FileWriter fileWriter = new FileWriter(this.PATH)) {
+            for (int i = 0; i < expenseArrayList.size(); i++) {
+                // Reference most last element of array list.
+                Expense e = expenseArrayList.get(i);
+                // Append current contents plus the new Expense object.
+                fileWriter.write(fileContents + String.format(
+                        "%.2f,%s,%s,\n",
+                        e.getAmount(),
+                        e.getCategory(),
+                        e.getDesc()
+                ));
+            }
         }
         catch(IOException e) {
             e.printStackTrace();

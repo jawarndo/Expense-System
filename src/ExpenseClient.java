@@ -58,12 +58,15 @@ public class ExpenseClient {
         switch(input) {
             case 0:
                 displayExpenses();
+                edit();
                 break;
             case 1:
                 addExpense();
+                edit();
                 break;
             case 2:
                 deleteExpense();
+                edit();
                 break;
             case 3:
                 start();
@@ -78,18 +81,51 @@ public class ExpenseClient {
 
         // Prompt user.
         System.out.println("\nTotal Expenses: " + expenseArrayList.size());
+        System.out.println("Index:\tAmount:\tCategory:\tDescription:\n");
 
-        for (int i = 0; i < expenseArrayList.size() ; i++) {
-            System.out.printf("£%.2f");
+        for (int i = expenseArrayList.size() - 1; i >= 0; i--) {
+            Expense e = expenseArrayList.get(i);
+            System.out.printf("[%d]: \t£%.2f\t %s\t\t%s\n", i, e.getAmount(), e.getCategory(), e.getDesc());
         }
+
+        System.out.println("");
     }
 
     private void addExpense() {
 
+        double amount;
+        String category, desc;
+
+        System.out.println("\nExpense Form:");
+
+        System.out.print("\nEnter the amount spent: £");
+        amount = new Scanner(System.in).nextDouble();
+
+        System.out.print("\nEnter the category of this expense: ");
+        category = new Scanner(System.in).nextLine();
+
+        System.out.print("\nEnter a short description about the expense: ");
+        desc = new Scanner(System.in).nextLine();
+
+        expenseDB.addExpense(amount, category, desc);
+        System.out.println("\nExpense DB Updated!");
     }
 
     private void deleteExpense() {
 
+        ArrayList<Expense> currentList = expenseDB.getExpenseArrayList();
+
+        // Prompt user.
+        System.out.println("Delete Mode");
+        displayExpenses();
+        System.out.println("Enter index you would like to delete.");
+        System.out.print("> ");
+
+        int input = new Scanner(System.in).nextInt();
+
+        expenseDB.deleteExpense(input);
+
+        System.out.println("Entry Deleted.");
     }
 
     private void analysis() {
